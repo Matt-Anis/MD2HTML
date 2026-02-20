@@ -1,30 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Markdown to HTML Converter</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
-    <h1>Markdown to HTML Converter</h1>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>Markdown to HTML Converter</h1>
+      </div>
+      <div class="header-center">
+        <div class="buttons">
+          <button id="edit" class="active" title="Edit Mode"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"></path></svg>Edit</button>
+          <button id="preview-btn" title="Preview Mode"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path></svg>Preview</button>
+          <button id="view-html-btn" title="View Raw HTML"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M69.12,94.15,28.5,128l40.62,33.85a8,8,0,1,1-10.24,12.29l-48-40a8,8,0,0,1,0-12.29l48-40a8,8,0,0,1,10.24,12.3Zm176,27.7-48-40a8,8,0,1,0-10.24,12.3L227.5,128l-40.62,33.85a8,8,0,1,0,10.24,12.29l48-40a8,8,0,0,0,0-12.29ZM162.73,32.48a8,8,0,0,0-10.25,4.79l-64,176a8,8,0,0,0,4.79,10.26A8.14,8.14,0,0,0,96,224a8,8,0,0,0,7.52-5.27l64-176A8,8,0,0,0,162.73,32.48Z"></path></svg>Code</button>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="https://github.com/Matt-Anis" target="_blank" class="github-link" title="View on GitHub">
+          <svg height="24" viewBox="0 0 16 16" width="24" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+          <span>Made by Matt-Anis</span>
+        </a>
+      </div>
+    </header>
+    
+    <div class="guide-section">
+      <div class="guide-container">
+        <button id="toggle-guide" class="toggle-guide-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
+          </svg>
+          <span>Markdown Quick Reference</span>
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+          </svg>
+        </button>
+        
+        <div id="guide-content" class="guide-content" style="display: none;">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Markdown Syntax</th>
+                <th>Example Output</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Heading 1</td>
+                <td><code># Heading 1</code></td>
+                <td><strong>Heading 1</strong></td>
+              </tr>
+              <tr>
+                <td>Heading 2</td>
+                <td><code>## Heading 2</code></td>
+                <td><strong>Heading 2</strong></td>
+              </tr>
+              <tr>
+                <td>Bold</td>
+                <td><code>**bold text**</code></td>
+                <td><strong>bold text</strong></td>
+              </tr>
+              <tr>
+                <td>Italic</td>
+                <td><code>*italic text*</code></td>
+                <td><em>italic text</em></td>
+              </tr>
+              <tr>
+                <td>Strikethrough</td>
+                <td><code>~~strikethrough~~</code></td>
+                <td><del>strikethrough</del></td>
+              </tr>
+              <tr>
+                <td>Inline Code</td>
+                <td><code>`code`</code></td>
+                <td><code>code</code></td>
+              </tr>
+              <tr>
+                <td>Link</td>
+                <td><code>[title](url)</code></td>
+                <td><a href="#">title</a></td>
+              </tr>
+              <tr>
+                <td>Image</td>
+                <td><code>![alt](image.jpg)</code></td>
+                <td>🖼️ Image</td>
+              </tr>
+              <tr>
+                <td>Blockquote</td>
+                <td><code>&gt; quote</code></td>
+                <td style="color: #8b949e;">❝ quote</td>
+              </tr>
+              <tr>
+                <td>Unordered List</td>
+                <td><code>- item</code></td>
+                <td>• item</td>
+              </tr>
+              <tr>
+                <td>Ordered List</td>
+                <td><code>1. item</code></td>
+                <td>1. item</td>
+              </tr>
+              <tr>
+                <td>Task List</td>
+                <td><code>- [x] task</code></td>
+                <td>☑ task</td>
+              </tr>
+              <tr>
+                <td>Code Block</td>
+                <td><code>```language<br>code<br>```</code></td>
+                <td>Code block</td>
+              </tr>
+              <tr>
+                <td>Horizontal Rule</td>
+                <td><code>---</code></td>
+                <td>─────</td>
+              </tr>
+              <tr>
+                <td>Table</td>
+                <td><code>| Header |<br>|--------|<br>| Cell |</code></td>
+                <td>Table</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
     <div id="container">
-        <div class="container">
-            <h2>Markdown Input:</h2>
-            <textarea id="markdown-input" placeholder="Enter your markdown here..."></textarea>
+      <div class="container" id="markdown-container">
+        <div class="container-header">
+          <h2>Markdown Input:</h2>
+          <button class="copy-btn" id="copy-markdown" title="Copy markdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"></path>
+            </svg>
+            <span>Copy</span>
+          </button>
         </div>
-        <div class="container">
-            <h2>Raw HTML Output:</h2>
-            <div id="html-output"></div>
+        <textarea
+          id="markdown-input"
+          placeholder="Enter your markdown here..."
+        ></textarea>
+      </div>
+      <div class="container" id="html-container" style="display: none;">
+        <div class="container-header">
+          <h2>Raw HTML Output:</h2>
+          <button class="copy-btn" id="copy-html" title="Copy HTML">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"></path>
+            </svg>
+            <span>Copy</span>
+          </button>
         </div>
-        <div class="container">
-            <h2>HTML Preview:</h2>
-            <div id="preview"></div>
-        </div>
+        <div id="html-output"></div>
+      </div>
+      <div class="container" id="preview-container" style="display: none;">
+        <h2>HTML Preview:</h2>
+        <div id="preview"></div>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
